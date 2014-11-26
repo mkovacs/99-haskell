@@ -1,8 +1,6 @@
 module Main where
 
+import Logic
+
 main :: IO ()
 main = interact twice
-
--- write a function that doubles a string
-twice :: String -> String
-twice = undefined

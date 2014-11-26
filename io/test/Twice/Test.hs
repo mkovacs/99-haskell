@@ -1,11 +1,9 @@
-module Test where
-
 import Control.Monad
 import System.Exit (exitFailure)
 import Test.QuickCheck
 import Test.QuickCheck.Test
 
-import Main
+import Logic
 
 main :: IO ()
 main = do

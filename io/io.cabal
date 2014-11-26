@@ -18,5 +18,6 @@ test-suite twice-test
   build-depends:     base ==4.*
                    , QuickCheck >=2.7 && <3
   type:              exitcode-stdio-1.0
-  hs-source-dirs:    src/Twice
+  hs-source-dirs:    test/Twice
+                   , src/Twice
   main-is:           Test.hs
