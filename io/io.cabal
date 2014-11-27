@@ -20,3 +20,17 @@ test-suite twice-test
   type:              exitcode-stdio-1.0
   hs-source-dirs:    src/Twice
   main-is:           Test.hs
+
+executable times
+  default-language:  Haskell2010
+  build-depends:     base ==4.*
+  hs-source-dirs:    src/Times
+  main-is:           Main.hs
+
+test-suite times-test
+  default-language:  Haskell2010
+  build-depends:     base ==4.*
+                   , QuickCheck >=2.7 && <3
+  type:              exitcode-stdio-1.0
+  hs-source-dirs:    src/Times
+  main-is:           Test.hs
