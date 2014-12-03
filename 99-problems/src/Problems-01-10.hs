@@ -62,9 +62,12 @@ tests_04 :: [Property]
 tests_04 =
   [ counterexample "problem 04, empty" $
       myLength [] == 0
-  , counterexample "problem 04, non-empty" $
-      \(elem :: Int) list ->
-        myLength (elem : list) == 1 + myLength list
+  , counterexample "problem 04, singleton" $
+      \(elem :: Int) ->
+        myLength [elem] == 1
+  , counterexample "problem 04, composite" $
+      \(list_1 :: [Int]) list_2 ->
+        myLength (list_1 ++ list_2) == myLength list_1 + myLength list_2
   ]
 
 myLength :: [a] -> Int
