@@ -34,7 +34,7 @@ tests_11 =
       ]
   ]
 
-encodeModified :: [a] -> [Run a]
+encodeModified :: (Eq a) => [a] -> [Run a]
 encodeModified = undefined
 
 data Run a
@@ -68,7 +68,7 @@ tests_13 =
       ]
   ]
 
-encodeDirect :: [a] -> [Run a]
+encodeDirect :: (Eq a) => [a] -> [Run a]
 encodeDirect = undefined
 
 -- Problem 14: Duplicate the elements of a list.
