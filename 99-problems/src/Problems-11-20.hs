@@ -126,7 +126,7 @@ tests_19 :: [Property]
 tests_19 =
   [ counterexample "problem 19 test case 01" $
       rotate 3 "abcdefgh" == "defghabc"
-  , counterexample "problem 19 test case 01" $
+  , counterexample "problem 19 test case 02" $
       rotate (-2) "abcdefgh" == "ghabcdef"
   ]
 
