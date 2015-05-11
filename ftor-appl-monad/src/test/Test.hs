@@ -1,0 +1,19 @@
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+import Data.Char (isDigit)
+import Control.Monad
+import System.Exit (exitFailure)
+import Test.QuickCheck
+import Test.QuickCheck.Test
+
+import ParserCombinators
+
+main :: IO ()
+main = do
+  result <- quickCheckResult $ conjoin tests
+  unless (isSuccess result) exitFailure
+
+tests :: [Property]
+tests =
+  [
+  ]
