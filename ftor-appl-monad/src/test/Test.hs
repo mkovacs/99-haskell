@@ -25,31 +25,31 @@ tests =
         in result parseNum input == [int]
   , let list = ["one", "two", "three"]
     in counterexample ("parse length-prefixed list " ++ show list) $
-      let input = join $ map lengthPrefix list
+      let input = join $ map encodeLP list
       in result (many parseLP) input == [list]
 {-
   , counterexample "parse list of length-prefixed strings" $
       \(list :: [String]) ->
-        let input = join $ map lengthPrefix list
+        let input = join $ map encodeLP list
         in result (many parseLP) input == [list]
 -}
   ]
 
-lengthPrefix :: String -> String
-lengthPrefix s = show (length s) ++ ":" ++ s
+encodeLP :: String -> String
+encodeLP s = show (length s) ++ ":" ++ s
 
 parseLP :: Parser String
 parseLP = do
   len <- parseNum
   _ <- char ':'
-  str <- givenLength len
+  str <- parseFixLen len
   return str
 
 parseNum :: Parser Int
 parseNum = fmap read $ many digit
 
-givenLength :: Int -> Parser String
-givenLength len = satisfy ((len==) . length) $ anyString
+parseFixLen :: Int -> Parser String
+parseFixLen len = satisfy ((len==) . length) $ anyString
 
 anyString :: Parser String
 anyString = many anyChar
