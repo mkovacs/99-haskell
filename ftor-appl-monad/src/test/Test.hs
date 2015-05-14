@@ -23,6 +23,13 @@ tests =
           NonNegative int = num
           input = show int
         in result parseNum input == [int]
+  , counterexample "parse pair of integers" $
+      \((a', b') :: (NonNegative Int, NonNegative Int)) ->
+        let
+          (NonNegative a, NonNegative b) = (a', b')
+          pair = (a, b)
+          input = show pair
+        in result (parsePair parseNum parseNum) input == [pair]
   , counterexample "parse list of length-prefixed strings" $
       \(list' :: [String]) ->
         let
@@ -40,6 +47,15 @@ parseLP = do
   _ <- char ':'
   str <- parseFixLen len
   return str
+
+parsePair :: Parser a -> Parser b -> Parser (a, b)
+parsePair parseA parseB = do
+  _ <- char '('
+  a <- parseA
+  _ <- char ','
+  b <- parseB
+  _ <- char ')'
+  return (a, b)
 
 parseNum :: Parser Int
 parseNum = fmap read $ many digit
