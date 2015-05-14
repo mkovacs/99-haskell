@@ -23,16 +23,12 @@ tests =
           NonNegative int = num
           input = show int
         in result parseNum input == [int]
-  , let list = ["one", "two", "three"]
-    in counterexample ("parse length-prefixed list " ++ show list) $
-      let input = join $ map encodeLP list
-      in result (many parseLP) input == [list]
-{-
   , counterexample "parse list of length-prefixed strings" $
-      \(list :: [String]) ->
-        let input = join $ map encodeLP list
+      \(list' :: [String]) ->
+        let
+          list = take 10 list'
+          input = join $ map encodeLP list
         in result (many parseLP) input == [list]
--}
   ]
 
 encodeLP :: String -> String
